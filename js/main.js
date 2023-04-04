@@ -1,7 +1,35 @@
 let nombre = prompt("Ingresa tu nombre")
-function mostrar (mensaje){
+function mostrar(mensaje) {
     console.log(mensaje)
 }
+function multi(n1, n2) {
+    let result = n1 * n2;
+    return result
+}
+
+function Producto(id, nombre, tipo, ocasion, precio, colores) {
+    this.id = id
+    this.nombre = nombre
+    this.tipo = tipo
+    this.ocasion = ocasion
+    this.precio = precio
+    this.colores = colores
+}
+
+
+const productos = [];
+const Cherry = new Producto(1, "Cherry", "vestido", "dia", 4000, ["cereza", "rojo", "amarillo", "ciruela"]);
+productos.push(Cherry)
+const Ocean = new Producto(2, "Ocean", "vestido", "noche", 6000, ["azul", "rojo", "vino", "beige", "rosa", "negro", "blanco"]);
+productos.push(Ocean)
+const Mary = new Producto(3, "Mary", "blazer", "dia", 7500, ["rosa", "beige", "amarillo", "celeste"]);
+productos.push(Mary)
+const Cindy = new Producto(4, "Cindy", "blazer", "noche", 7000, ["fuscia", "rosa", "amarillo", "rojo", "azul"]);
+productos.push(Cindy)
+const Mate = new Producto(5, "Mate", "calza", "deporte", 2700, ["negro", "blanco", "gris"]);
+productos.push(Mate)
+
+
 let opcion = prompt("Bienvenid@ " + nombre + ", ¿Buscas algo en especial?\n 1. Solo chusmear\n 2. Busco Algo puntual")
 if (opcion == "1") {
     console.log("muestra toda la tienda")
@@ -35,20 +63,3 @@ function multi(n1, n2) {
 
 }
 
-
-let vestidoAzul = 3000
-let calzaDep = 1500
-let remeraVerde = 1600
-let opCompra = prompt(nombre + " que deseas comprar?:\n 1. Vestido Azul : $3000\n 2. Calza Deportiva : $1500\n 3.Remera Verde : $1600")
-if (opCompra == "1") {
-    let cantidad = prompt("elegi la cantidad")
-    multi(vestidoAzul, cantidad)
-} else if (opCompra == "2") {
-    let cantidad = prompt("elegi la cantidad")
-    multi(calzaDep, cantidad)
-} else if (opCompra == "3") {
-    let cantidad = prompt("elegi la cantidad")
-    multi(remeraVerde, cantidad)
-} else {
-    alert("Opción no válida");
-}
