@@ -1,12 +1,4 @@
 let nombre = prompt("Ingresa tu nombre")
-function mostrar(mensaje) {
-    console.log(mensaje)
-}
-function multi(n1, n2) {
-    let result = n1 * n2;
-    return result
-}
-
 function Producto(id, nombre, tipo, ocasion, precio, colores) {
     this.id = id
     this.nombre = nombre
@@ -30,36 +22,57 @@ const Mate = new Producto(5, "Mate", "calza", "deporte", 2700, ["negro", "blanco
 productos.push(Mate)
 
 
-let opcion = prompt("Bienvenid@ " + nombre + ", ¿Buscas algo en especial?\n 1. Solo chusmear\n 2. Busco Algo puntual")
-if (opcion == "1") {
-    console.log("muestra toda la tienda")
-} else if (opcion == "2") {
-    let opcion2 = prompt("¿Qué estás buscando?\n 1. Algo para el día\n 2.Algo para la noche\n 3. Algo formal\n 4.Algo sport ")
-    switch (opcion2) {
-        case "1":
-            mostrar("muestra items con la clase dia");
-            break;
-        case "2":
-            mostrar("muestra items con la clase noche");
-            break;
-        case "3":
-            mostrar("muestra items con la clase formal");
-            break;
-        case "4":
-            mostrar("muestra items con la clase sport");
-            break;
-        default:
-            alert("Opción no válida");
-            break;
+let carrito = [];
+  let precioTotal = 0;
+
+  function agregarProductoAlCarrito(producto) {
+    alert("Detalles del producto:\n - Nombre del producto: " + producto.nombre + "\n - Precio del producto: $" + producto.precio + "\n Colores disponibles: " + producto.colores.join(", "));
+       
+    const colorSeleccionado = prompt("Ingresa el color que deseas agregar al carrito:");
+    
+    if (producto.colores.includes(colorSeleccionado)) {
+      carrito.push({...producto, color: colorSeleccionado});
+      precioTotal += producto.precio;
+      alert("Se agregó el producto " + producto.nombre + " (" + colorSeleccionado + ") al carrito.");
+    } else {
+      alert("El color seleccionado no está disponible para este producto.");
     }
-} else {
-    alert("Opción no válida");
-}
-
-
-function multi(n1, n2) {
-    let result = n1 * n2;
-    alert("el total es " + result);
-
-}
-
+  }
+  
+  function consultarProductosEnCarrito() {
+    if (carrito.length == 0) {
+      console.log("El carrito está vacío.");
+    } else {
+      alert("Productos en el carrito:");
+      carrito.forEach(producto => alert(producto.nombre + "  $ " + producto.precio));
+      alert("Precio total: $ " + precioTotal);
+    }
+  }
+    while (true) {
+    const opcion = prompt("Bienvenid@ " + nombre + ", elige una opción:\n 1. Ver productos\n 2. Agregar producto al carrito\n 3. Ver productos en carrito\n 4.Salir");
+    if (opcion == "1") {
+        alert("elegi una de las siguientes opciones")
+        productos.forEach(element => {
+            alert(
+                "- ID del producto: " + element.id + "\n" +
+                "- Nombre del producto: " + element.nombre + "\n" +
+                "- Precio del producto: $" + element.precio + "\n\n");
+        })
+    } else if (opcion == "2") {
+      const idProducto = prompt("Ingrese el numero del producto a agregar al carrito:");
+      const productoEncontrado = productos.find(producto => producto.id == idProducto);
+      if (productoEncontrado) {
+        agregarProductoAlCarrito(productoEncontrado);
+      } else {
+        alert("No se encontró el producto " + idProducto);
+      }
+    } else if (opcion == "3") {
+      consultarProductosEnCarrito();
+     }else if (opcion == "4") {
+      console.log("¡Hasta luego!" + nombre);
+      break;
+    } else {
+      console.log("Opción no válida.");
+    }
+  }  
+      
