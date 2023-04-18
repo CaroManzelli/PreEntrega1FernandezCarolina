@@ -16,13 +16,15 @@
         <div class="titulo text-center">
             <h1> Hapaff Tile</h1>
         </div>
-        <div>
-            <form action="">
-                <input type="text" placeholder="Search.." id="inSearch" name="search">
-                <button id="btnSearch"> ver mas</button>
-            </form><br>
+
     </header>
     <main class="container-fluid">
+        <button id="btnCarrito">Carrito</button>
+        <section class="row row-cols-1 row-cols-md-3">
+            <div class="carrito col">
+            <div id="carrito"></div>
+        </div><br>
+    </section>
         <section class="row row-cols-1 row-cols-md-3">
             <div class="col">
                 <article class="card">
@@ -48,7 +50,7 @@
                             <button>Cereza</button>
                         </div><br>
 
-                        <button class="comprar">Comprar</button>
+                        <button class="comprar" data-nombre="Cherry">Comprar</button>
                 </article><br>
             </div>
             <div class="col">
@@ -84,7 +86,7 @@
                             <button>Vino</button>
                         </div><br>
 
-                        <button class="comprar">Comprar</button>
+                        <button class="comprar" data-nombre="Ocean">Comprar</button>
                 </article><br>
             </div>
             <div class="col">
@@ -111,7 +113,7 @@
                             <button>Beige</button>
                         </div><br>
 
-                        <button class="comprar">Comprar</button>
+                        <button class="comprar" data-nombre="Mary">Comprar</button>
                 </article><br>
 
         </section>
@@ -144,7 +146,7 @@
                             <button>Azul</button>
                         </div><br>
 
-                        <button class="comprar">Comprar</button>
+                        <button class="comprar" data-nombre="Cindy">Comprar</button>
                 </article><br>
             </div>
             <div class="col">
@@ -167,7 +169,7 @@
                         <div class="mateColors select">
                             <button>Gris</button>
                         </div><br>
-                        <button class="comprar">Comprar</button>
+                        <button class="comprar" data-nombre="Mate">Comprar</button>
                 </article><br>
             </div>
             <div class="col">
@@ -175,12 +177,14 @@
             </div>
 
         </section><br>
+
     </main>
     <!-- Footer -->
     <footer>
         <div class="footer-text"> © 2022 Copyright</div>
     </footer>
     <!--JS-->
+    <script src="./js/products.js"></script>
     <script src="./js/main.js"></script>
 </body>
 

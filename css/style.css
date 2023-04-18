@@ -27,3 +27,8 @@ footer {
 .select{
     display: inline;
 }
+
+.carrito{
+    background-color: antiquewhite;
+    font-weight: bolder;
+}
