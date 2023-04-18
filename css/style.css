@@ -24,3 +24,6 @@ footer {
     position: fixed;
 }
 
+.select{
+    display: inline;
+}
