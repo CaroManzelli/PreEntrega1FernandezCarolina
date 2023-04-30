@@ -31,4 +31,13 @@ footer {
 .carrito{
     background-color: antiquewhite;
     font-weight: bolder;
+    list-style: none;
+    
+}
+.eliminar{
+    display: inline !important
+}
+
+.lista{
+    display: inline !important
 }
