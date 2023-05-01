@@ -2,12 +2,43 @@ const carrito = [];
 function guardaEnLS() {
   localStorage.setItem('carrito', JSON.stringify(carrito))
 }
-Cherry.cantidad = 0;
-Ocean.cantidad = 0;
-Mary.cantidad = 0;
-Cindy.cantidad = 0;
-Mate.cantidad = 0;
 
+
+let productos = [];
+fetch("./data/datos.json")
+  .then(response => response.json())
+  .then(data => {
+    productos = data;
+    actualizarCarrito();
+   
+btnBuy.forEach((btn) => {
+  const productName = btn.dataset.nombre;
+  btn.addEventListener('click', () => agregarProductoAlCarrito(productName));
+  
+guardarEnLS();
+actualizarCarrito();
+});
+if (carritoDeLS.length > 0) {
+  const confBuy = document.querySelector('#confBuy');
+    confBuy.addEventListener('click', async () => {
+      if (carritoDeLS.length > 0) {
+        carritoDeLS = [];
+        guardaEnLS();
+        actualizarCarrito();
+        const { value: email } = await Swal.fire({
+          title: 'Ingresa tu e-mail',
+          input: 'email',
+          inputLabel: 'Te enviaremos el detalle para seguir con tu compra',
+          inputPlaceholder: 'example@hotmail.com'
+        });
+        if (email) {
+          Swal.fire(`Se enviaron los datos de compra a: ${email}`);
+        }
+      }
+    });
+  };
+
+  })
 const btnBuy = document.querySelectorAll('.comprar');
 const carritoElemento = document.querySelector('#carrito');
 
@@ -150,22 +181,4 @@ const inputValue = fetch(ipAPI)
   .then(response => response.json())
   .then(data => data.ip)
 //confirmar compra
-  if (carritoDeLS.length > 0) {
-    const confBuy = document.querySelector('#confBuy');
-      confBuy.addEventListener('click', async () => {
-        if (carritoDeLS.length > 0) {
-          carritoDeLS = [];
-          guardaEnLS();
-          actualizarCarrito();
-          const { value: email } = await Swal.fire({
-            title: 'Ingresa tu e-mail',
-            input: 'email',
-            inputLabel: 'Te enviaremos el detalle para seguir con tu compra',
-            inputPlaceholder: 'example@hotmail.com'
-          });
-          if (email) {
-            Swal.fire(`Se enviaron los datos de compra a: ${email}`);
-          }
-        }
-      });
-    };
+  

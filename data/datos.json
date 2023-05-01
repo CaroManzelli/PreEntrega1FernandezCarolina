@@ -1,0 +1,40 @@
+   [{
+       "id":1,
+       "nombre":"Cherry",
+       "tipo":"vestido",
+       "ocasion":"dia",
+       "precio":4000,
+       "colores": ["cereza", "rosa", "amarillo", "ciruela"]
+    },
+    {
+       "id":2,
+       "nombre":"Ocean",
+       "tipo":"vestido",
+       "ocasion":"noche",
+       "precio":6000,
+       "colores":["azul", "rojo", "vino", "beige", "rosa", "negro", "blanco"]
+    },
+      {
+       "id":3,
+       "nombre":"Mary",
+       "tipo":"blazer",
+       "ocasion":"dia",
+       "precio":7500,
+       "colores":["rosa", "beige", "amarillo", "celeste"]
+    },
+    {
+       "id":4,
+       "nombre":"Cindy",
+       "tipo":"blazer",
+       "ocasion":"noche",
+       "precio":7000,
+       "colores":["fucsia", "rosa", "amarillo", "rojo", "azul"]
+    },
+    {
+       "id":5.1,
+       "nombre":"Mate",
+       "tipo":"calza",
+       "ocasion":"deporte",
+       "precio":2700,
+       "colores":["negro", "blanco", "gris"]
+    }]
