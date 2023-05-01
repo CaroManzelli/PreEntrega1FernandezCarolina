@@ -42,7 +42,7 @@ if (carritoDeLS.length > 0) {
 const btnBuy = document.querySelectorAll('.comprar');
 const carritoElemento = document.querySelector('#carrito');
 
-let carritoDeLS = JSON.parse(localStorage.getItem('carrito'));
+let carritoDeLS = JSON.parse(localStorage.getItem('carrito')) || [];
 console.log(carritoDeLS);
 //actualizar carrito
 function actualizarCarrito() {
@@ -174,11 +174,3 @@ function guardarEnLS() {
 
 }
 
-const confBuy = document.querySelector('#confBuy')
-const ipAPI = '//api.ipify.org?format=json'
-
-const inputValue = fetch(ipAPI)
-  .then(response => response.json())
-  .then(data => data.ip)
-//confirmar compra
-  
