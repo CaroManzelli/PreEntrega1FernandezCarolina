@@ -3,47 +3,28 @@ function guardaEnLS() {
   localStorage.setItem('carrito', JSON.stringify(carrito))
 }
 
-
 let productos = [];
 fetch("./data/datos.json")
   .then(response => response.json())
   .then(data => {
     productos = data;
     actualizarCarrito();
-   
-btnBuy.forEach((btn) => {
-  const productName = btn.dataset.nombre;
-  btn.addEventListener('click', () => agregarProductoAlCarrito(productName));
-  
-guardarEnLS();
-actualizarCarrito();
-});
-if (carritoDeLS.length > 0) {
-  const confBuy = document.querySelector('#confBuy');
-    confBuy.addEventListener('click', async () => {
-      if (carritoDeLS.length > 0) {
-        carritoDeLS = [];
-        guardaEnLS();
-        actualizarCarrito();
-        const { value: email } = await Swal.fire({
-          title: 'Ingresa tu e-mail',
-          input: 'email',
-          inputLabel: 'Te enviaremos el detalle para seguir con tu compra',
-          inputPlaceholder: 'example@hotmail.com'
-        });
-        if (email) {
-          Swal.fire(`Se enviaron los datos de compra a: ${email}`);
-        }
-      }
-    });
-  };
 
+    btnBuy.forEach((btn) => {
+      const productName = btn.dataset.nombre;
+      btn.addEventListener('click', () => agregarProductoAlCarrito(productName));
+
+      guardarEnLS();
+      actualizarCarrito();
+    });
   })
+
 const btnBuy = document.querySelectorAll('.comprar');
 const carritoElemento = document.querySelector('#carrito');
 
 let carritoDeLS = JSON.parse(localStorage.getItem('carrito')) || [];
-console.log(carritoDeLS);
+
+
 //actualizar carrito
 function actualizarCarrito() {
   carritoElemento.innerHTML = '';
@@ -63,6 +44,7 @@ function actualizarCarrito() {
   <button id="vaciarCart"> Vaciar carrito </button>
   <button id="confBuy"> Comprar </button>`;
   carritoElemento.appendChild(totalElemento);
+
   //vaciar carrito
   const btnDelate = document.querySelector('#vaciarCart');
   btnDelate.addEventListener('click', () => {
@@ -86,7 +68,8 @@ function actualizarCarrito() {
       }
     })
   });
-//eliminar obj carrito de a uno
+
+  //eliminar obj carrito de a uno
   const botonesEliminar = document.querySelectorAll('.eliminar');
   botonesEliminar.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -99,9 +82,35 @@ function actualizarCarrito() {
       guardarEnLS();
       actualizarCarrito();
     });
+
+    //confirmar compra   
+    if (carritoDeLS.length > 0) {
+      const confBuy = document.querySelector('#confBuy');
+      confBuy.addEventListener('click', async () => {
+        if (carritoDeLS.length > 0) {
+
+          const { value: email } = await Swal.fire({
+            title: 'Ingresa tu e-mail',
+            input: 'email',
+            inputLabel: 'Te enviaremos el detalle para seguir con tu compra',
+            inputPlaceholder: 'example@hotmail.com'
+          });
+          if (email) {
+            Swal.fire(`Se enviaron los datos de compra a: ${email}`);
+
+            carritoDeLS = [];
+            guardaEnLS();
+            actualizarCarrito();
+          }
+        }
+      });
+    };
+
   });
+
 }
 actualizarCarrito();
+
 //agregar al carrito
 function agregarProductoAlCarrito(nombre) {
   let productoExistente = carritoDeLS.find((producto) => producto.nombre === nombre);
@@ -144,20 +153,12 @@ function agregarProductoAlCarrito(nombre) {
         icon: 'success',
         title: 'Producto agregado al carrito'
       })
+    }
   }
-}
 
-guardarEnLS();
-actualizarCarrito();
+  guardarEnLS();
+  actualizarCarrito();
 }
-
-btnBuy.forEach((btn) => {
-  const productName = btn.dataset.nombre;
-  btn.addEventListener('click', () => agregarProductoAlCarrito(productName));
-  
-guardarEnLS();
-actualizarCarrito();
-});
 
 const btnCarrito = document.querySelector('#btnCarrito');
 btnCarrito.addEventListener('click', () => {
@@ -168,9 +169,7 @@ btnCarrito.addEventListener('click', () => {
   }
 });
 
-
 function guardarEnLS() {
   localStorage.setItem('carrito', JSON.stringify(carritoDeLS));
 
 }
-
